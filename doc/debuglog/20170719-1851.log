@@ -1,0 +1,131 @@
+bbs@debian:~/maplebbs-itoc$ gdb attach 4279 -ex cont
+GNU gdb (Debian 7.12-6) 7.12.0.20161007-git
+Copyright (C) 2016 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "i686-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+attach: No such file or directory.
+Attaching to process 4279
+Reading symbols from /home/bbs/bin/bbsd...done.
+Reading symbols from /lib/i386-linux-gnu/libcrypt.so.1...Reading symbols from /usr/lib/debug/.build-id/49/4cf7f02e95dc15b3b177414fdf6e546f7c73e2.debug...done.
+done.
+Reading symbols from /lib/i386-linux-gnu/libresolv.so.2...Reading symbols from /usr/lib/debug/.build-id/82/1cc403106f2e311db5cde616de0823e7a5b623.debug...done.
+done.
+Reading symbols from /lib/i386-linux-gnu/libdl.so.2...Reading symbols from /usr/lib/debug/.build-id/ba/ed2708d60c4c9cc816de4c67c09453933391ec.debug...done.
+done.
+Reading symbols from /lib/i386-linux-gnu/libc.so.6...Reading symbols from /usr/lib/debug/.build-id/f4/0165cccc8bba7adde205d7d571d3b76cdd56df.debug...done.
+done.
+Reading symbols from /lib/ld-linux.so.2...Reading symbols from /usr/lib/debug/.build-id/ff/ec6bbdbd2ea33377b06b19a329d32c65df5e6f.debug...done.
+done.
+0xb77c5cd9 in __kernel_vsyscall ()
+Continuing.
+
+Program received signal SIGSEGV, Segmentation fault.
+0x8003be08 in brh_get (bstamp=995120554, bhno=bhno@entry=1) at board.c:159
+159           if (bstamp == *head)
+(gdb) backtrace
+#0  0x8003be08 in brh_get (bstamp=995120554, bhno=bhno@entry=1) at board.c:159
+#1  0x8003c7d6 in brh_get (bhno=1, bstamp=<optimized out>) at board.c:143
+#2  class_item (num=2, bno=1, brdpost=0) at board.c:1082
+#3  0x8003ca41 in class_body (xo=0x8007ceb8 <board_xo>) at board.c:1183
+#4  0x8003cfda in class_neck (xo=0x8007ceb8 <board_xo>) at board.c:1225
+#5  0x80059b12 in xover (cmd=114) at xover.c:1342
+#6  0x8003ddb2 in Boards () at board.c:2050
+#7  0x800498d8 in menu () at menu.c:1111
+#8  0x80035ffe in tn_main () at bbsd.c:1106
+#9  main (argc=<optimized out>, argv=<optimized out>) at bbsd.c:1565
+(gdb) backtrace
+#0  0x8003be08 in brh_get (bstamp=995120554, bhno=bhno@entry=1) at board.c:159
+#1  0x8003c7d6 in brh_get (bhno=1, bstamp=<optimized out>) at board.c:143
+#2  class_item (num=2, bno=1, brdpost=0) at board.c:1082
+#3  0x8003ca41 in class_body (xo=0x8007ceb8 <board_xo>) at board.c:1183
+#4  0x8003cfda in class_neck (xo=0x8007ceb8 <board_xo>) at board.c:1225
+#5  0x80059b12 in xover (cmd=114) at xover.c:1342
+#6  0x8003ddb2 in Boards () at board.c:2050
+#7  0x800498d8 in menu () at menu.c:1111
+#8  0x80035ffe in tn_main () at bbsd.c:1106
+#9  main (argc=<optimized out>, argv=<optimized out>) at bbsd.c:1565
+(gdb) n
+abort_bbs () at bbsd.c:166
+166     {
+(gdb) backtrace
+#0  abort_bbs () at bbsd.c:166
+#1  <signal handler called>
+#2  0x8003be08 in brh_get (bstamp=995120554, bhno=bhno@entry=1) at board.c:159
+#3  0x8003c7d6 in brh_get (bhno=1, bstamp=<optimized out>) at board.c:143
+#4  class_item (num=2, bno=1, brdpost=0) at board.c:1082
+#5  0x8003ca41 in class_body (xo=0x8007ceb8 <board_xo>) at board.c:1183
+#6  0x8003cfda in class_neck (xo=0x8007ceb8 <board_xo>) at board.c:1225
+#7  0x80059b12 in xover (cmd=114) at xover.c:1342
+#8  0x8003ddb2 in Boards () at board.c:2050
+#9  0x800498d8 in menu () at menu.c:1111
+#10 0x80035ffe in tn_main () at bbsd.c:1106
+#11 main (argc=<optimized out>, argv=<optimized out>) at bbsd.c:1565
+(gdb) n
+167       if (bbstate)
+(gdb) backtrace
+#0  abort_bbs () at bbsd.c:167
+#1  <signal handler called>
+#2  0x8003be08 in brh_get (bstamp=995120554, bhno=bhno@entry=1) at board.c:159
+#3  0x8003c7d6 in brh_get (bhno=1, bstamp=<optimized out>) at board.c:143
+#4  class_item (num=2, bno=1, brdpost=0) at board.c:1082
+#5  0x8003ca41 in class_body (xo=0x8007ceb8 <board_xo>) at board.c:1183
+#6  0x8003cfda in class_neck (xo=0x8007ceb8 <board_xo>) at board.c:1225
+#7  0x80059b12 in xover (cmd=114) at xover.c:1342
+#8  0x8003ddb2 in Boards () at board.c:2050
+#9  0x800498d8 in menu () at menu.c:1111
+#10 0x80035ffe in tn_main () at bbsd.c:1106
+#11 main (argc=<optimized out>, argv=<optimized out>) at bbsd.c:1565
+(gdb) n
+168         u_exit("AXXED");
+(gdb) backtrace
+#0  abort_bbs () at bbsd.c:168
+#1  <signal handler called>
+#2  0x8003be08 in brh_get (bstamp=995120554, bhno=bhno@entry=1) at board.c:159
+#3  0x8003c7d6 in brh_get (bhno=1, bstamp=<optimized out>) at board.c:143
+#4  class_item (num=2, bno=1, brdpost=0) at board.c:1082
+#5  0x8003ca41 in class_body (xo=0x8007ceb8 <board_xo>) at board.c:1183
+#6  0x8003cfda in class_neck (xo=0x8007ceb8 <board_xo>) at board.c:1225
+#7  0x80059b12 in xover (cmd=114) at xover.c:1342
+#8  0x8003ddb2 in Boards () at board.c:2050
+#9  0x800498d8 in menu () at menu.c:1111
+#10 0x80035ffe in tn_main () at bbsd.c:1106
+#11 main (argc=<optimized out>, argv=<optimized out>) at bbsd.c:1565
+(gdb) n
+
+Program received signal SIGSEGV, Segmentation fault.
+brh_save () at board.c:628
+628         bhno = bstamp2bno(*head);
+(gdb) backtrace
+#0  brh_save () at board.c:628
+#1  0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#2  0x800396b4 in abort_bbs () at bbsd.c:168
+#3  <signal handler called>
+#4  0x8003be08 in brh_get (bstamp=995120554, bhno=bhno@entry=1) at board.c:159
+#5  0x8003c7d6 in brh_get (bhno=1, bstamp=<optimized out>) at board.c:143
+#6  class_item (num=2, bno=1, brdpost=0) at board.c:1082
+#7  0x8003ca41 in class_body (xo=0x8007ceb8 <board_xo>) at board.c:1183
+#8  0x8003cfda in class_neck (xo=0x8007ceb8 <board_xo>) at board.c:1225
+#9  0x80059b12 in xover (cmd=114) at xover.c:1342
+#10 0x8003ddb2 in Boards () at board.c:2050
+#11 0x800498d8 in menu () at menu.c:1111
+#12 0x80035ffe in tn_main () at bbsd.c:1106
+#13 main (argc=<optimized out>, argv=<optimized out>) at bbsd.c:1565
+(gdb) n
+
+Program terminated with signal SIGSEGV, Segmentation fault.
+The program no longer exists.
+(gdb) backtrace
+No stack.
+(gdb) n
+The program is not being run.
+(gdb)

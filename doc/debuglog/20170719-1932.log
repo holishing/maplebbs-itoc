@@ -1,0 +1,545 @@
+bbs@debian:~/maplebbs-itoc$ gdb attach 4396 -ex cont
+GNU gdb (Debian 7.12-6) 7.12.0.20161007-git
+Copyright (C) 2016 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "i686-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+attach: No such file or directory.
+Attaching to process 4396
+Reading symbols from /home/bbs/bin/bbsd...done.
+Reading symbols from /lib/i386-linux-gnu/libcrypt.so.1...Reading symbols from /usr/lib/debug/.build-id/49/4cf7f02e95dc15b3b177414fdf6e546f7c73e2.debug...done.
+done.
+Reading symbols from /lib/i386-linux-gnu/libresolv.so.2...Reading symbols from /usr/lib/debug/.build-id/82/1cc403106f2e311db5cde616de0823e7a5b623.debug...done.
+done.
+Reading symbols from /lib/i386-linux-gnu/libdl.so.2...Reading symbols from /usr/lib/debug/.build-id/ba/ed2708d60c4c9cc816de4c67c09453933391ec.debug...done.
+done.
+Reading symbols from /lib/i386-linux-gnu/libc.so.6...Reading symbols from /usr/lib/debug/.build-id/f4/0165cccc8bba7adde205d7d571d3b76cdd56df.debug...done.
+done.
+Reading symbols from /lib/ld-linux.so.2...Reading symbols from /usr/lib/debug/.build-id/ff/ec6bbdbd2ea33377b06b19a329d32c65df5e6f.debug...done.
+done.
+0xb77c5cd9 in __kernel_vsyscall ()
+Continuing.
+
+Program received signal SIGSEGV, Segmentation fault.
+__memcpy_sse2_unaligned () at ../sysdeps/i386/i686/multiarch/memcpy-sse2-unaligned.S:578
+578     ../sysdeps/i386/i686/multiarch/memcpy-sse2-unaligned.S: No such file or directory.
+(gdb) backtrace
+#0  __memcpy_sse2_unaligned () at ../sysdeps/i386/i686/multiarch/memcpy-sse2-unaligned.S:578
+#1  0x8003be70 in brh_get (bstamp=<optimized out>, bhno=bhno@entry=0) at board.c:162
+#2  0x8003c7d6 in brh_get (bhno=0, bstamp=<optimized out>) at board.c:143
+#3  class_item (num=1, bno=0, brdpost=0) at board.c:1082
+#4  0x8003ca41 in class_body (xo=0x8007ceb8 <board_xo>) at board.c:1183
+#5  0x8003cfda in class_neck (xo=0x8007ceb8 <board_xo>) at board.c:1225
+#6  0x80059b12 in xover (cmd=114) at xover.c:1342
+#7  0x8003ddb2 in Boards () at board.c:2050
+#8  0x800498d8 in menu () at menu.c:1111
+#9  0x80035ffe in tn_main () at bbsd.c:1106
+#10 main (argc=<optimized out>, argv=<optimized out>) at bbsd.c:1565
+(gdb) n
+abort_bbs () at bbsd.c:166
+166     {
+(gdb) backtrace
+#0  abort_bbs () at bbsd.c:166
+#1  <signal handler called>
+#2  __memcpy_sse2_unaligned () at ../sysdeps/i386/i686/multiarch/memcpy-sse2-unaligned.S:578
+#3  0x8003be70 in brh_get (bstamp=<optimized out>, bhno=bhno@entry=0) at board.c:162
+#4  0x8003c7d6 in brh_get (bhno=0, bstamp=<optimized out>) at board.c:143
+#5  class_item (num=1, bno=0, brdpost=0) at board.c:1082
+#6  0x8003ca41 in class_body (xo=0x8007ceb8 <board_xo>) at board.c:1183
+#7  0x8003cfda in class_neck (xo=0x8007ceb8 <board_xo>) at board.c:1225
+#8  0x80059b12 in xover (cmd=114) at xover.c:1342
+#9  0x8003ddb2 in Boards () at board.c:2050
+#10 0x800498d8 in menu () at menu.c:1111
+#11 0x80035ffe in tn_main () at bbsd.c:1106
+#12 main (argc=<optimized out>, argv=<optimized out>) at bbsd.c:1565
+(gdb) n
+167       if (bbstate)
+(gdb) backtrace
+#0  abort_bbs () at bbsd.c:167
+#1  <signal handler called>
+#2  __memcpy_sse2_unaligned () at ../sysdeps/i386/i686/multiarch/memcpy-sse2-unaligned.S:578
+#3  0x8003be70 in brh_get (bstamp=<optimized out>, bhno=bhno@entry=0) at board.c:162
+#4  0x8003c7d6 in brh_get (bhno=0, bstamp=<optimized out>) at board.c:143
+#5  class_item (num=1, bno=0, brdpost=0) at board.c:1082
+#6  0x8003ca41 in class_body (xo=0x8007ceb8 <board_xo>) at board.c:1183
+#7  0x8003cfda in class_neck (xo=0x8007ceb8 <board_xo>) at board.c:1225
+#8  0x80059b12 in xover (cmd=114) at xover.c:1342
+#9  0x8003ddb2 in Boards () at board.c:2050
+#10 0x800498d8 in menu () at menu.c:1111
+#11 0x80035ffe in tn_main () at bbsd.c:1106
+#12 main (argc=<optimized out>, argv=<optimized out>) at bbsd.c:1565
+(gdb) backtrace
+#0  abort_bbs () at bbsd.c:168
+#1  <signal handler called>
+#2  __memcpy_sse2_unaligned () at ../sysdeps/i386/i686/multiarch/memcpy-sse2-unaligned.S:578
+#3  0x8003be70 in brh_get (bstamp=<optimized out>, bhno=bhno@entry=0) at board.c:162
+#4  0x8003c7d6 in brh_get (bhno=0, bstamp=<optimized out>) at board.c:143
+#5  class_item (num=1, bno=0, brdpost=0) at board.c:1082
+#6  0x8003ca41 in class_body (xo=0x8007ceb8 <board_xo>) at board.c:1183
+#7  0x8003cfda in class_neck (xo=0x8007ceb8 <board_xo>) at board.c:1225
+#8  0x80059b12 in xover (cmd=114) at xover.c:1342
+#9  0x8003ddb2 in Boards () at board.c:2050
+#10 0x800498d8 in menu () at menu.c:1111
+#11 0x80035ffe in tn_main () at bbsd.c:1106
+#12 main (argc=<optimized out>, argv=<optimized out>) at bbsd.c:1565
+(gdb) n
+
+Program received signal SIGSEGV, Segmentation fault.
+_IO_vfscanf_internal (s=0xbf2145d0, format=0xb7712208 "%hu%n:%hu%n:%hu%n",
+    argptr=0xbf2146a8 "\326F!\277\334F!\277\330F!\277\334F!\277\332F!\277\334F!\277\001\b", errp=0x0) at vfscanf.c:290
+290     vfscanf.c: No such file or directory.
+(gdb) backtrace
+#0  _IO_vfscanf_internal (s=0xbf2145d0, format=0xb7712208 "%hu%n:%hu%n:%hu%n",
+    argptr=0xbf2146a8 "\326F!\277\334F!\277\330F!\277\334F!\277\332F!\277\334F!\277\001\b", errp=0x0) at vfscanf.c:290
+#1  0xb76143e7 in _IO_vsscanf (string=0x818b62b4 "8", format=0xb7712208 "%hu%n:%hu%n:%hu%n",
+    args=0xbf2146a8 "\326F!\277\334F!\277\330F!\277\334F!\277\332F!\277\334F!\277\001\b") at iovsscanf.c:41
+#2  0xb760ee84 in __sscanf (s=0x818b62b4 "8", format=0xb7712208 "%hu%n:%hu%n:%hu%n") at sscanf.c:32
+#3  0xb765640d in parse_offset (tzp=tzp@entry=0xbf214710, whichrule=whichrule@entry=0) at tzset.c:236
+#4  0xb765682d in __tzset_parse_tz (tz=<optimized out>) at tzset.c:357
+#5  0xb76580c8 in __tzfile_compute (timer=<optimized out>, use_localtime=1, leap_correct=0xbf214778, leap_hit=0xbf21477c, tp=0xb776b720 <_tmbuf>)
+    at tzfile.c:691
+#6  0xb7656e79 in __tz_convert (timer=0xbf2147fc, use_localtime=1, tp=0xb776b720 <_tmbuf>) at tzset.c:624
+#7  0xb76552e1 in __GI_localtime (t=0xbf2147fc) at localtime.c:39
+#8  0x8005cbaf in Btime ()
+#9  0x8005cc12 in Now ()
+#10 0x80039498 in blog (mode=0x8005fbed "AXXED", msg=0xbf214a44 "Stay: 1 (4396)") at bbsd.c:77
+#11 0x8003956e in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:106
+#12 0x800396b4 in abort_bbs () at bbsd.c:168
+#13 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#14 0x8003c35e in brh_save () at board.c:641
+#15 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#16 0x800396b4 in abort_bbs () at bbsd.c:168
+#17 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#18 0x8003c35e in brh_save () at board.c:641
+#19 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#20 0x800396b4 in abort_bbs () at bbsd.c:168
+#21 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#22 0x8003c35e in brh_save () at board.c:641
+#23 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#24 0x800396b4 in abort_bbs () at bbsd.c:168
+#25 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#26 0x8003c35e in brh_save () at board.c:641
+#27 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#28 0x800396b4 in abort_bbs () at bbsd.c:168
+#29 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#30 0x8003c35e in brh_save () at board.c:641
+#31 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#32 0x800396b4 in abort_bbs () at bbsd.c:168
+#33 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#34 0x8003c35e in brh_save () at board.c:641
+#35 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#36 0x800396b4 in abort_bbs () at bbsd.c:168
+#37 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#38 0x8003c35e in brh_save () at board.c:641
+#39 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+---Type <return> to continue, or q <return> to quit---
+#40 0x800396b4 in abort_bbs () at bbsd.c:168
+#41 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#42 0x8003c35e in brh_save () at board.c:641
+#43 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#44 0x800396b4 in abort_bbs () at bbsd.c:168
+#45 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#46 0x8003c35e in brh_save () at board.c:641
+#47 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#48 0x800396b4 in abort_bbs () at bbsd.c:168
+#49 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#50 0x8003c35e in brh_save () at board.c:641
+#51 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#52 0x800396b4 in abort_bbs () at bbsd.c:168
+#53 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#54 0x8003c35e in brh_save () at board.c:641
+#55 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#56 0x800396b4 in abort_bbs () at bbsd.c:168
+#57 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#58 0x8003c35e in brh_save () at board.c:641
+#59 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#60 0x800396b4 in abort_bbs () at bbsd.c:168
+#61 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#62 0x8003c35e in brh_save () at board.c:641
+#63 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#64 0x800396b4 in abort_bbs () at bbsd.c:168
+#65 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#66 0x8003c35e in brh_save () at board.c:641
+#67 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#68 0x800396b4 in abort_bbs () at bbsd.c:168
+#69 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#70 0x8003c35e in brh_save () at board.c:641
+#71 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#72 0x800396b4 in abort_bbs () at bbsd.c:168
+#73 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#74 0x8003c35e in brh_save () at board.c:641
+#75 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#76 0x800396b4 in abort_bbs () at bbsd.c:168
+#77 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#78 0x8003c35e in brh_save () at board.c:641
+#79 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#80 0x800396b4 in abort_bbs () at bbsd.c:168
+#81 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#82 0x8003c35e in brh_save () at board.c:641
+---Type <return> to continue, or q <return> to quit---
+#83 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#84 0x800396b4 in abort_bbs () at bbsd.c:168
+#85 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#86 0x8003c35e in brh_save () at board.c:641
+#87 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#88 0x800396b4 in abort_bbs () at bbsd.c:168
+#89 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#90 0x8003c35e in brh_save () at board.c:641
+#91 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#92 0x800396b4 in abort_bbs () at bbsd.c:168
+#93 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#94 0x8003c35e in brh_save () at board.c:641
+#95 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#96 0x800396b4 in abort_bbs () at bbsd.c:168
+#97 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#98 0x8003c35e in brh_save () at board.c:641
+#99 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#100 0x800396b4 in abort_bbs () at bbsd.c:168
+#101 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#102 0x8003c35e in brh_save () at board.c:641
+#103 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#104 0x800396b4 in abort_bbs () at bbsd.c:168
+#105 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#106 0x8003c35e in brh_save () at board.c:641
+#107 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#108 0x800396b4 in abort_bbs () at bbsd.c:168
+#109 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#110 0x8003c35e in brh_save () at board.c:641
+#111 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#112 0x800396b4 in abort_bbs () at bbsd.c:168
+#113 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#114 0x8003c35e in brh_save () at board.c:641
+#115 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#116 0x800396b4 in abort_bbs () at bbsd.c:168
+#117 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#118 0x8003c35e in brh_save () at board.c:641
+#119 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#120 0x800396b4 in abort_bbs () at bbsd.c:168
+#121 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#122 0x8003c35e in brh_save () at board.c:641
+#123 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#124 0x800396b4 in abort_bbs () at bbsd.c:168
+#125 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+---Type <return> to continue, or q <return> to quit---
+#126 0x8003c35e in brh_save () at board.c:641
+#127 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#128 0x800396b4 in abort_bbs () at bbsd.c:168
+#129 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#130 0x8003c35e in brh_save () at board.c:641
+#131 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#132 0x800396b4 in abort_bbs () at bbsd.c:168
+#133 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#134 0x8003c35e in brh_save () at board.c:641
+#135 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#136 0x800396b4 in abort_bbs () at bbsd.c:168
+#137 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#138 0x8003c35e in brh_save () at board.c:641
+#139 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#140 0x800396b4 in abort_bbs () at bbsd.c:168
+#141 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#142 0x8003c35e in brh_save () at board.c:641
+#143 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#144 0x800396b4 in abort_bbs () at bbsd.c:168
+#145 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#146 0x8003c35e in brh_save () at board.c:641
+#147 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#148 0x800396b4 in abort_bbs () at bbsd.c:168
+#149 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#150 0x8003c35e in brh_save () at board.c:641
+#151 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#152 0x800396b4 in abort_bbs () at bbsd.c:168
+#153 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#154 0x8003c35e in brh_save () at board.c:641
+#155 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#156 0x800396b4 in abort_bbs () at bbsd.c:168
+#157 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#158 0x8003c35e in brh_save () at board.c:641
+#159 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#160 0x800396b4 in abort_bbs () at bbsd.c:168
+#161 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#162 0x8003c35e in brh_save () at board.c:641
+#163 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#164 0x800396b4 in abort_bbs () at bbsd.c:168
+#165 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#166 0x8003c35e in brh_save () at board.c:641
+#167 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#168 0x800396b4 in abort_bbs () at bbsd.c:168
+---Type <return> to continue, or q <return> to quit---
+#169 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#170 0x8003c35e in brh_save () at board.c:641
+#171 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#172 0x800396b4 in abort_bbs () at bbsd.c:168
+#173 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#174 0x8003c35e in brh_save () at board.c:641
+#175 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#176 0x800396b4 in abort_bbs () at bbsd.c:168
+#177 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#178 0x8003c35e in brh_save () at board.c:641
+#179 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#180 0x800396b4 in abort_bbs () at bbsd.c:168
+#181 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#182 0x8003c35e in brh_save () at board.c:641
+#183 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#184 0x800396b4 in abort_bbs () at bbsd.c:168
+#185 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#186 0x8003c35e in brh_save () at board.c:641
+#187 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#188 0x800396b4 in abort_bbs () at bbsd.c:168
+#189 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#190 0x8003c35e in brh_save () at board.c:641
+#191 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#192 0x800396b4 in abort_bbs () at bbsd.c:168
+#193 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#194 0x8003c35e in brh_save () at board.c:641
+#195 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#196 0x800396b4 in abort_bbs () at bbsd.c:168
+#197 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#198 0x8003c35e in brh_save () at board.c:641
+#199 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#200 0x800396b4 in abort_bbs () at bbsd.c:168
+#201 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#202 0x8003c35e in brh_save () at board.c:641
+#203 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#204 0x800396b4 in abort_bbs () at bbsd.c:168
+#205 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#206 0x8003c35e in brh_save () at board.c:641
+#207 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#208 0x800396b4 in abort_bbs () at bbsd.c:168
+#209 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#210 0x8003c35e in brh_save () at board.c:641
+#211 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+---Type <return> to continue, or q <return> to quit---
+#212 0x800396b4 in abort_bbs () at bbsd.c:168
+#213 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#214 0x8003c35e in brh_save () at board.c:641
+#215 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#216 0x800396b4 in abort_bbs () at bbsd.c:168
+#217 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#218 0x8003c35e in brh_save () at board.c:641
+#219 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#220 0x800396b4 in abort_bbs () at bbsd.c:168
+#221 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#222 0x8003c35e in brh_save () at board.c:641
+#223 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#224 0x800396b4 in abort_bbs () at bbsd.c:168
+#225 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#226 0x8003c35e in brh_save () at board.c:641
+#227 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#228 0x800396b4 in abort_bbs () at bbsd.c:168
+#229 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#230 0x8003c35e in brh_save () at board.c:641
+#231 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#232 0x800396b4 in abort_bbs () at bbsd.c:168
+#233 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#234 0x8003c35e in brh_save () at board.c:641
+#235 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#236 0x800396b4 in abort_bbs () at bbsd.c:168
+#237 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#238 0x8003c35e in brh_save () at board.c:641
+#239 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#240 0x800396b4 in abort_bbs () at bbsd.c:168
+#241 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#242 0x8003c35e in brh_save () at board.c:641
+#243 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#244 0x800396b4 in abort_bbs () at bbsd.c:168
+#245 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#246 0x8003c35e in brh_save () at board.c:641
+#247 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#248 0x800396b4 in abort_bbs () at bbsd.c:168
+#249 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#250 0x8003c35e in brh_save () at board.c:641
+#251 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#252 0x800396b4 in abort_bbs () at bbsd.c:168
+#253 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#254 0x8003c35e in brh_save () at board.c:641
+---Type <return> to continue, or q <return> to quit---
+#255 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#256 0x800396b4 in abort_bbs () at bbsd.c:168
+#257 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#258 0x8003c35e in brh_save () at board.c:641
+#259 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#260 0x800396b4 in abort_bbs () at bbsd.c:168
+#261 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#262 0x8003c35e in brh_save () at board.c:641
+#263 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#264 0x800396b4 in abort_bbs () at bbsd.c:168
+#265 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#266 0x8003c35e in brh_save () at board.c:641
+#267 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#268 0x800396b4 in abort_bbs () at bbsd.c:168
+#269 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#270 0x8003c35e in brh_save () at board.c:641
+#271 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#272 0x800396b4 in abort_bbs () at bbsd.c:168
+#273 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#274 0x8003c35e in brh_save () at board.c:641
+#275 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#276 0x800396b4 in abort_bbs () at bbsd.c:168
+#277 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#278 0x8003c35e in brh_save () at board.c:641
+#279 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#280 0x800396b4 in abort_bbs () at bbsd.c:168
+#281 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#282 0x8003c35e in brh_save () at board.c:641
+#283 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#284 0x800396b4 in abort_bbs () at bbsd.c:168
+#285 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#286 0x8003c35e in brh_save () at board.c:641
+#287 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#288 0x800396b4 in abort_bbs () at bbsd.c:168
+#289 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#290 0x8003c35e in brh_save () at board.c:641
+#291 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#292 0x800396b4 in abort_bbs () at bbsd.c:168
+#293 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#294 0x8003c35e in brh_save () at board.c:641
+#295 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#296 0x800396b4 in abort_bbs () at bbsd.c:168
+#297 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+---Type <return> to continue, or q <return> to quit---
+#298 0x8003c35e in brh_save () at board.c:641
+#299 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#300 0x800396b4 in abort_bbs () at bbsd.c:168
+#301 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#302 0x8003c35e in brh_save () at board.c:641
+#303 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#304 0x800396b4 in abort_bbs () at bbsd.c:168
+#305 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#306 0x8003c35e in brh_save () at board.c:641
+#307 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#308 0x800396b4 in abort_bbs () at bbsd.c:168
+#309 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#310 0x8003c35e in brh_save () at board.c:641
+#311 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#312 0x800396b4 in abort_bbs () at bbsd.c:168
+#313 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#314 0x8003c35e in brh_save () at board.c:641
+#315 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#316 0x800396b4 in abort_bbs () at bbsd.c:168
+#317 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#318 0x8003c35e in brh_save () at board.c:641
+#319 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#320 0x800396b4 in abort_bbs () at bbsd.c:168
+#321 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#322 0x8003c35e in brh_save () at board.c:641
+#323 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#324 0x800396b4 in abort_bbs () at bbsd.c:168
+#325 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#326 0x8003c35e in brh_save () at board.c:641
+#327 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#328 0x800396b4 in abort_bbs () at bbsd.c:168
+#329 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#330 0x8003c35e in brh_save () at board.c:641
+#331 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#332 0x800396b4 in abort_bbs () at bbsd.c:168
+#333 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#334 0x8003c35e in brh_save () at board.c:641
+#335 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#336 0x800396b4 in abort_bbs () at bbsd.c:168
+#337 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#338 0x8003c35e in brh_save () at board.c:641
+#339 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#340 0x800396b4 in abort_bbs () at bbsd.c:168
+---Type <return> to continue, or q <return> to quit---
+#341 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#342 0x8003c35e in brh_save () at board.c:641
+#343 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#344 0x800396b4 in abort_bbs () at bbsd.c:168
+#345 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#346 0x8003c35e in brh_save () at board.c:641
+#347 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#348 0x800396b4 in abort_bbs () at bbsd.c:168
+#349 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#350 0x8003c35e in brh_save () at board.c:641
+#351 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#352 0x800396b4 in abort_bbs () at bbsd.c:168
+#353 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#354 0x8003c35e in brh_save () at board.c:641
+#355 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#356 0x800396b4 in abort_bbs () at bbsd.c:168
+#357 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#358 0x8003c35e in brh_save () at board.c:641
+#359 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#360 0x800396b4 in abort_bbs () at bbsd.c:168
+#361 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#362 0x8003c35e in brh_save () at board.c:641
+#363 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#364 0x800396b4 in abort_bbs () at bbsd.c:168
+#365 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#366 0x8003c35e in brh_save () at board.c:641
+#367 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#368 0x800396b4 in abort_bbs () at bbsd.c:168
+#369 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#370 0x8003c35e in brh_save () at board.c:641
+#371 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#372 0x800396b4 in abort_bbs () at bbsd.c:168
+#373 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#374 0x8003c35e in brh_save () at board.c:641
+#375 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#376 0x800396b4 in abort_bbs () at bbsd.c:168
+#377 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#378 0x8003c35e in brh_save () at board.c:641
+#379 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#380 0x800396b4 in abort_bbs () at bbsd.c:168
+#381 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#382 0x8003c35e in brh_save () at board.c:641
+#383 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+---Type <return> to continue, or q <return> to quit---
+#384 0x800396b4 in abort_bbs () at bbsd.c:168
+#385 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#386 0x8003c35e in brh_save () at board.c:641
+#387 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#388 0x800396b4 in abort_bbs () at bbsd.c:168
+#389 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#390 0x8003c35e in brh_save () at board.c:641
+#391 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#392 0x800396b4 in abort_bbs () at bbsd.c:168
+#393 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#394 0x8003c35e in brh_save () at board.c:641
+#395 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#396 0x800396b4 in abort_bbs () at bbsd.c:168
+#397 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#398 0x8003c35e in brh_save () at board.c:641
+#399 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#400 0x800396b4 in abort_bbs () at bbsd.c:168
+#401 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#402 0x8003c35e in brh_save () at board.c:641
+#403 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#404 0x800396b4 in abort_bbs () at bbsd.c:168
+#405 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#406 0x8003c35e in brh_save () at board.c:641
+#407 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#408 0x800396b4 in abort_bbs () at bbsd.c:168
+#409 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#410 0x8003c35e in brh_save () at board.c:641
+#411 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#412 0x800396b4 in abort_bbs () at bbsd.c:168
+#413 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#414 0x8003c35e in brh_save () at board.c:641
+#415 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#416 0x800396b4 in abort_bbs () at bbsd.c:168
+#417 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#418 0x8003c35e in brh_save () at board.c:641
+#419 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#420 0x800396b4 in abort_bbs () at bbsd.c:168
+#421 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#422 0x8003c35e in brh_save () at board.c:641
+#423 0x800395fa in u_exit (mode=0x8005fbed "AXXED") at bbsd.c:111
+#424 0x800396b4 in abort_bbs () at bbsd.c:168
+#425 0x8003b369 in brh_alloc (tail=tail@entry=0xe7484590, size=1813561597, size@entry=4096) at board.c:79
+#426 0x8003c35e in brh_save () at board.c:641
+---Type <return> to continue, or q <return> to quit---Quit
+(gdb) n
+
+Program terminated with signal SIGSEGV, Segmentation fault.
+The program no longer exists.
+(gdb)

@@ -1,6 +1,6 @@
-# MapleBBS-itoc GNU Debug mode
+# MapleBBS-itoc GNU Debugger mode
 
-目前gdb方式: 將 Makefile 中 LDFLAG 裡的 -s 拿掉, CFLAGS 裡加上 -g.
+目前Debug方式: 將 Makefile 中 LDFLAG 裡的 -s 拿掉, CFLAGS 裡加上 -g.
 
 若有任何建議, 還請不吝提點orz
 

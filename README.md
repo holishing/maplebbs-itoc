@@ -1,3 +1,9 @@
+# MapleBBS-itoc GNU Debug mode
+
+目前gdb方式: 將 Makefile 中 LDFLAG 裡的 -s 拿掉, CFLAGS 裡加上 -g.
+
+若有任何建議, 還請不吝提點orz
+
 # 快速安裝手冊 
 **(encoding: utf-8)**
 

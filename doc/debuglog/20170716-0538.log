@@ -1,0 +1,168 @@
+bbs@debian:~$ gdb attach 1639 -ex cont
+GNU gdb (Debian 7.12-6) 7.12.0.20161007-git
+Copyright (C) 2016 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "i686-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+attach: No such file or directory.
+Attaching to process 1639
+Reading symbols from /home/bbs/bin/bbsd...done.
+Reading symbols from /lib/i386-linux-gnu/libcrypt.so.1...Reading symbols from /usr/lib/debug/.build-id/49/4cf7f02e95dc15b3b177414fdf6e546f7c73e2.debug...done.
+done.
+Reading symbols from /lib/i386-linux-gnu/libresolv.so.2...Reading symbols from /usr/lib/debug/.build-id/82/1cc403106f2e311db5cde616de0823e7a5b623.debug...done.
+done.
+Reading symbols from /lib/i386-linux-gnu/libdl.so.2...Reading symbols from /usr/lib/debug/.build-id/ba/ed2708d60c4c9cc816de4c67c09453933391ec.debug...done.
+done.
+Reading symbols from /lib/i386-linux-gnu/libc.so.6...Reading symbols from /usr/lib/debug/.build-id/f4/0165cccc8bba7adde205d7d571d3b76cdd56df.debug...done.
+done.
+Reading symbols from /lib/ld-linux.so.2...Reading symbols from /usr/lib/debug/.build-id/ff/ec6bbdbd2ea33377b06b19a329d32c65df5e6f.debug...done.
+done.
+0xb77afcd9 in __kernel_vsyscall ()
+Continuing.
+
+Program received signal SIGSEGV, Segmentation fault.
+__memcpy_sse2_unaligned () at ../sysdeps/i386/i686/multiarch/memcpy-sse2-unaligned.S:578
+578     ../sysdeps/i386/i686/multiarch/memcpy-sse2-unaligned.S: No such file or directory.
+(gdb) backtrace
+#0  __memcpy_sse2_unaligned () at ../sysdeps/i386/i686/multiarch/memcpy-sse2-unaligned.S:578
+#1  0x80070e70 in brh_get (bstamp=<optimized out>, bhno=bhno@entry=13) at board.c:162
+#2  0x800717d6 in brh_get (bhno=13, bstamp=<optimized out>) at board.c:143
+#3  class_item (num=1, bno=13, brdpost=0) at board.c:1082
+#4  0x80071a41 in class_body (xo=0x800b1eb8 <board_xo>) at board.c:1183
+#5  0x80071fda in class_neck (xo=0x800b1eb8 <board_xo>) at board.c:1225
+#6  0x8008eb12 in xover (cmd=114) at xover.c:1342
+#7  0x80072db2 in Boards () at board.c:2050
+#8  0x8007e8d8 in menu () at menu.c:1111
+#9  0x8006affe in tn_main () at bbsd.c:1106
+#10 main (argc=<optimized out>, argv=<optimized out>) at bbsd.c:1565
+(gdb) n
+abort_bbs () at bbsd.c:166
+166     {
+(gdb) backtrace
+#0  abort_bbs () at bbsd.c:166
+#1  <signal handler called>
+#2  __memcpy_sse2_unaligned () at ../sysdeps/i386/i686/multiarch/memcpy-sse2-unaligned.S:578
+#3  0x80070e70 in brh_get (bstamp=<optimized out>, bhno=bhno@entry=13) at board.c:162
+#4  0x800717d6 in brh_get (bhno=13, bstamp=<optimized out>) at board.c:143
+#5  class_item (num=1, bno=13, brdpost=0) at board.c:1082
+#6  0x80071a41 in class_body (xo=0x800b1eb8 <board_xo>) at board.c:1183
+#7  0x80071fda in class_neck (xo=0x800b1eb8 <board_xo>) at board.c:1225
+#8  0x8008eb12 in xover (cmd=114) at xover.c:1342
+#9  0x80072db2 in Boards () at board.c:2050
+#10 0x8007e8d8 in menu () at menu.c:1111
+#11 0x8006affe in tn_main () at bbsd.c:1106
+#12 main (argc=<optimized out>, argv=<optimized out>) at bbsd.c:1565
+(gdb) n
+167       if (bbstate)
+(gdb) n
+168         u_exit("AXXED");
+(gdb) n
+
+Program received signal SIGSEGV, Segmentation fault.
+0xb75ecf16 in _IO_vfscanf_internal (s=0xbf59e540, format=0xb76fc208 "%hu%n:%hu%n:%hu%n",
+    argptr=0xbf59e618 "F\346Y\277L\346Y\277H\346Y\277L\346Y\277J\346Y\277L\346Y\277\001\b", errp=0x0) at vfscanf.c:279
+279     vfscanf.c: No such file or directory.
+(gdb) backtrace
+#0  0xb75ecf16 in _IO_vfscanf_internal (s=0xbf59e540, format=0xb76fc208 "%hu%n:%hu%n:%hu%n",
+    argptr=0xbf59e618 "F\346Y\277L\346Y\277H\346Y\277L\346Y\277J\346Y\277L\346Y\277\001\b", errp=0x0) at vfscanf.c:279
+#1  0xb75fe3e7 in _IO_vsscanf (string=0x80b712b4 "8", format=0xb76fc208 "%hu%n:%hu%n:%hu%n",
+    args=0xbf59e618 "F\346Y\277L\346Y\277H\346Y\277L\346Y\277J\346Y\277L\346Y\277\001\b") at iovsscanf.c:41
+#2  0xb75f8e84 in __sscanf (s=0x80b712b4 "8", format=0xb76fc208 "%hu%n:%hu%n:%hu%n") at sscanf.c:32
+#3  0xb764040d in parse_offset (tzp=tzp@entry=0xbf59e680, whichrule=whichrule@entry=0) at tzset.c:236
+#4  0xb764082d in __tzset_parse_tz (tz=<optimized out>) at tzset.c:357
+#5  0xb76420c8 in __tzfile_compute (timer=<optimized out>, use_localtime=1, leap_correct=0xbf59e6e8, leap_hit=0xbf59e6ec, tp=0xb7755720 <_tmbuf>)
+    at tzfile.c:691
+#6  0xb7640e79 in __tz_convert (timer=0xbf59e76c, use_localtime=1, tp=0xb7755720 <_tmbuf>) at tzset.c:624
+#7  0xb763f2e1 in __GI_localtime (t=0xbf59e76c) at localtime.c:39
+#8  0x80091baf in Btime ()
+#9  0x80091c12 in Now ()
+#10 0x8006e498 in blog (mode=0x80094bed "AXXED", msg=0xbf59e9b4 "Stay: 1 (1639)") at bbsd.c:77
+#11 0x8006e56e in u_exit (mode=0x80094bed "AXXED") at bbsd.c:106
+#12 0x8006e6b4 in abort_bbs () at bbsd.c:168
+#13 0x80070369 in brh_alloc (tail=tail@entry=0xe6612274, size=1812250799, size@entry=4096) at board.c:79
+#14 0x8007135e in brh_save () at board.c:641
+#15 0x8006e5fa in u_exit (mode=0x80094bed "AXXED") at bbsd.c:111
+#16 0x8006e6b4 in abort_bbs () at bbsd.c:168
+#17 0x80070369 in brh_alloc (tail=tail@entry=0xe6612274, size=1812250799, size@entry=4096) at board.c:79
+#18 0x8007135e in brh_save () at board.c:641
+#19 0x8006e5fa in u_exit (mode=0x80094bed "AXXED") at bbsd.c:111
+#20 0x8006e6b4 in abort_bbs () at bbsd.c:168
+#21 0x80070369 in brh_alloc (tail=tail@entry=0xe6612274, size=1812250799, size@entry=4096) at board.c:79
+#22 0x8007135e in brh_save () at board.c:641
+#23 0x8006e5fa in u_exit (mode=0x80094bed "AXXED") at bbsd.c:111
+#24 0x8006e6b4 in abort_bbs () at bbsd.c:168
+#25 0x80070369 in brh_alloc (tail=tail@entry=0xe6612274, size=1812250799, size@entry=4096) at board.c:79
+#26 0x8007135e in brh_save () at board.c:641
+#27 0x8006e5fa in u_exit (mode=0x80094bed "AXXED") at bbsd.c:111
+#28 0x8006e6b4 in abort_bbs () at bbsd.c:168
+#29 0x80070369 in brh_alloc (tail=tail@entry=0xe6612274, size=1812250799, size@entry=4096) at board.c:79
+#30 0x8007135e in brh_save () at board.c:641
+#31 0x8006e5fa in u_exit (mode=0x80094bed "AXXED") at bbsd.c:111
+#32 0x8006e6b4 in abort_bbs () at bbsd.c:168
+#33 0x80070369 in brh_alloc (tail=tail@entry=0xe6612274, size=1812250799, size@entry=4096) at board.c:79
+#34 0x8007135e in brh_save () at board.c:641
+#35 0x8006e5fa in u_exit (mode=0x80094bed "AXXED") at bbsd.c:111
+#36 0x8006e6b4 in abort_bbs () at bbsd.c:168
+#37 0x80070369 in brh_alloc (tail=tail@entry=0xe6612274, size=1812250799, size@entry=4096) at board.c:79
+#38 0x8007135e in brh_save () at board.c:641
+#39 0x8006e5fa in u_exit (mode=0x80094bed "AXXED") at bbsd.c:111
+---Type <return> to continue, or q <return> to quit---~~~~~q
+#40 0x8006e6b4 in abort_bbs () at bbsd.c:168
+#41 0x80070369 in brh_alloc (tail=tail@entry=0xe6612274, size=1812250799, size@entry=4096) at board.c:79
+#42 0x8007135e in brh_save () at board.c:641
+#43 0x8006e5fa in u_exit (mode=0x80094bed "AXXED") at bbsd.c:111
+#44 0x8006e6b4 in abort_bbs () at bbsd.c:168
+#45 0x80070369 in brh_alloc (tail=tail@entry=0xe6612274, size=1812250799, size@entry=4096) at board.c:79
+#46 0x8007135e in brh_save () at board.c:641
+#47 0x8006e5fa in u_exit (mode=0x80094bed "AXXED") at bbsd.c:111
+#48 0x8006e6b4 in abort_bbs () at bbsd.c:168
+#49 0x80070369 in brh_alloc (tail=tail@entry=0xe6612274, size=1812250799, size@entry=4096) at board.c:79
+#50 0x8007135e in brh_save () at board.c:641
+#51 0x8006e5fa in u_exit (mode=0x80094bed "AXXED") at bbsd.c:111
+#52 0x8006e6b4 in abort_bbs () at bbsd.c:168
+#53 0x80070369 in brh_alloc (tail=tail@entry=0xe6612274, size=1812250799, size@entry=4096) at board.c:79
+#54 0x8007135e in brh_save () at board.c:641
+#55 0x8006e5fa in u_exit (mode=0x80094bed "AXXED") at bbsd.c:111
+#56 0x8006e6b4 in abort_bbs () at bbsd.c:168
+#57 0x80070369 in brh_alloc (tail=tail@entry=0xe6612274, size=1812250799, size@entry=4096) at board.c:79
+#58 0x8007135e in brh_save () at board.c:641
+#59 0x8006e5fa in u_exit (mode=0x80094bed "AXXED") at bbsd.c:111
+#60 0x8006e6b4 in abort_bbs () at bbsd.c:168
+#61 0x80070369 in brh_alloc (tail=tail@entry=0xe6612274, size=1812250799, size@entry=4096) at board.c:79
+#62 0x8007135e in brh_save () at board.c:641
+#63 0x8006e5fa in u_exit (mode=0x80094bed "AXXED") at bbsd.c:111
+#64 0x8006e6b4 in abort_bbs () at bbsd.c:168
+#65 0x80070369 in brh_alloc (tail=tail@entry=0xe6612274, size=1812250799, size@entry=4096) at board.c:79
+#66 0x8007135e in brh_save () at board.c:641
+#67 0x8006e5fa in u_exit (mode=0x80094bed "AXXED") at bbsd.c:111
+#68 0x8006e6b4 in abort_bbs () at bbsd.c:168
+#69 0x80070369 in brh_alloc (tail=tail@entry=0xe6612274, size=1812250799, size@entry=4096) at board.c:79
+#70 0x8007135e in brh_save () at board.c:641
+#71 0x8006e5fa in u_exit (mode=0x80094bed "AXXED") at bbsd.c:111
+#72 0x8006e6b4 in abort_bbs () at bbsd.c:168
+#73 0x80070369 in brh_alloc (tail=tail@entry=0xe6612274, size=1812250799, size@entry=4096) at board.c:79
+#74 0x8007135e in brh_save () at board.c:641
+#75 0x8006e5fa in u_exit (mode=0x80094bed "AXXED") at bbsd.c:111
+#76 0x8006e6b4 in abort_bbs () at bbsd.c:168
+#77 0x80070369 in brh_alloc (tail=tail@entry=0xe6612274, size=1812250799, size@entry=4096) at board.c:79
+#78 0x8007135e in brh_save () at board.c:641
+#79 0x8006e5fa in u_exit (mode=0x80094bed "AXXED") at bbsd.c:111
+#80 0x8006e6b4 in abort_bbs () at bbsd.c:168
+#81 0x80070369 in brh_alloc (tail=tail@entry=0xe6612274, size=1812250799, size@entry=4096) at board.c:79
+#82 0x8007135e in brh_save () at board.c:641
+---Type <return> to continue, or q <return> to quit---q
+Quit
+(gdb) n
+
+Program terminated with signal SIGSEGV, Segmentation fault.
+The program no longer exists.
+(gdb)

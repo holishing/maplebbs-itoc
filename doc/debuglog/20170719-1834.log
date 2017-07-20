@@ -1,0 +1,60 @@
+bbs@debian:~$ gdb attach 1577 -ex cont
+GNU gdb (Debian 7.12-6) 7.12.0.20161007-git
+Copyright (C) 2016 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "i686-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+attach: No such file or directory.
+Attaching to process 1577
+Reading symbols from /home/bbs/bin/bbsd...done.
+Reading symbols from /lib/i386-linux-gnu/libcrypt.so.1...Reading symbols from /usr/lib/debug/.build-id/49/4cf7f02e95dc15b3b177414fdf6e546f7c73e2
+.debug...done.
+done.
+Reading symbols from /lib/i386-linux-gnu/libresolv.so.2...Reading symbols from /usr/lib/debug/.build-id/82/1cc403106f2e311db5cde616de0823e7a5b62
+3.debug...done.
+done.
+Reading symbols from /lib/i386-linux-gnu/libdl.so.2...Reading symbols from /usr/lib/debug/.build-id/ba/ed2708d60c4c9cc816de4c67c09453933391ec.de
+bug...done.
+done.
+Reading symbols from /lib/i386-linux-gnu/libc.so.6...Reading symbols from /usr/lib/debug/.build-id/f4/0165cccc8bba7adde205d7d571d3b76cdd56df.deb
+ug...done.
+done.
+Reading symbols from /lib/ld-linux.so.2...Reading symbols from /usr/lib/debug/.build-id/ff/ec6bbdbd2ea33377b06b19a329d32c65df5e6f.debug...done.
+done.
+0xb77afcd9 in __kernel_vsyscall ()
+Continuing.
+
+Program received signal SIGSEGV, Segmentation fault.
+__memcpy_sse2_unaligned () at ../sysdeps/i386/i686/multiarch/memcpy-sse2-unaligned.S:578
+578     ../sysdeps/i386/i686/multiarch/memcpy-sse2-unaligned.S: No such file or directory.
+(gdb) n
+abort_bbs () at bbsd.c:166
+166     {
+(gdb) n
+167       if (bbstate)
+(gdb) n
+168         u_exit("AXXED");
+(gdb) n
+
+Program received signal SIGSEGV, Segmentation fault.
+0xb75ecf16 in _IO_vfscanf_internal (s=0xbf59e540, format=0xb76fc208 "%hu%n:%hu%n:%hu%n",
+    argptr=0xbf59e618 "F\346Y\277L\346Y\277H\346Y\277L\346Y\277J\346Y\277L\346Y\277\001\b", errp=0x0) at vfscanf.c:279
+279     vfscanf.c: No such file or directory.
+(gdb) n
+
+Program terminated with signal SIGSEGV, Segmentation fault.
+The program no longer exists.
+(gdb) n
+The program is not being run.
+(gdb) n
+The program is not being run.
+(gdb)
